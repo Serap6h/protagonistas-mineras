@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  var data = window.__PM__ || {};
   var $ = function (sel, scope) { return (scope || document).querySelector(sel); };
   var $$ = function (sel, scope) { return Array.prototype.slice.call((scope || document).querySelectorAll(sel)); };
 
@@ -48,7 +47,8 @@
   }
 
   // ---------------------------------------------------------------
-  // Smooth-scroll anchors (native scrollTo, offset for sticky nav)
+  // Smooth-scroll anchors (native scrollTo, offset for sticky nav).
+  // Also opens the target <details> stage/FAQ if the anchor points at one.
   // ---------------------------------------------------------------
   function initAnchorScroll() {
     var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -60,6 +60,7 @@
       var el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
+      if (el.tagName === "DETAILS") el.open = true;
       var navOffset = 64;
       var top = el.getBoundingClientRect().top + window.scrollY - navOffset;
       window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
@@ -98,56 +99,11 @@
     }, 6000);
   }
 
-  // ---------------------------------------------------------------
-  // Timeline: mark today's entry with a "HOY" badge
-  // ---------------------------------------------------------------
-  function initTimelineToday() {
-    var items = $$("[data-timeline] .timeline-item");
-    if (!items.length) return;
-
-    var today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    items.forEach(function (item) {
-      var start = item.getAttribute("data-start");
-      var end = item.getAttribute("data-end");
-      if (!start || !end) return;
-      var startDate = new Date(start + "T00:00:00");
-      var endDate = new Date(end + "T00:00:00");
-      if (today >= startDate && today <= endDate) {
-        var dateEl = item.querySelector(".timeline-date");
-        if (dateEl && !dateEl.querySelector(".timeline-today")) {
-          var badge = document.createElement("span");
-          badge.className = "timeline-today";
-          badge.textContent = "HOY";
-          dateEl.appendChild(badge);
-        }
-      }
-    });
-  }
-
-  // ---------------------------------------------------------------
-  // Apply CTA: wire the real URL once it's set in manifest.js
-  // ---------------------------------------------------------------
-  function initApplyButton() {
-    var btn = $("[data-apply-btn]");
-    if (!btn || !data.applyUrl) return;
-    var link = document.createElement("a");
-    link.className = btn.className.replace("btn-disabled", "btn-primary");
-    link.href = data.applyUrl;
-    link.target = "_blank";
-    link.rel = "noopener";
-    link.textContent = "Postular ahora";
-    btn.replaceWith(link);
-  }
-
   function boot() {
     safe(initNavScroll, "initNavScroll");
     safe(initMobileMenu, "initMobileMenu");
     safe(initAnchorScroll, "initAnchorScroll");
     safe(initReveals, "initReveals");
-    safe(initTimelineToday, "initTimelineToday");
-    safe(initApplyButton, "initApplyButton");
     document.documentElement.classList.add("is-ready");
   }
 
