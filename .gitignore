@@ -1,0 +1,8 @@
+# Dev-time only — not needed to serve the site
+/tools/
+
+# Original source photos (large) — the site only references assets/img/*.webp
+/assets/source/
+
+# Claude Code local config — not part of the deployed site
+/.claude/
