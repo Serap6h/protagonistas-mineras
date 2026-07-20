@@ -4,9 +4,18 @@ Micrositio de una sola página: guía del proceso de postulación a **Protagonis
 
 ## Contenido y fuente de verdad
 
-Todo el copy (las 13 etapas del proceso, tips, notas de tranquilidad, recursos por etapa y FAQs) proviene de `Blog PPMM.pptx`. La única parte que no sale de ese PPT es la introducción breve de la sección "Protagonistas Mineras", que reutiliza la descripción del programa ya validada anteriormente.
+Todo el copy (las 8 etapas del proceso de selección, tips, notas, el bloque de Eficiencia Profesional, los temas de recursos y las FAQs) proviene de `TU RUTA PROTAGONISTA.docx`. La única parte que no sale de ese documento es la introducción breve de la sección "Protagonistas Mineras", que reutiliza la descripción del programa ya validada anteriormente.
 
-Este sitio reemplazó una versión previa basada en `PLAN DIFUSION PPMM 2026 VF.pptx` (un plan de difusión/marketing de la 5ª convocatoria) — ese contenido ya no está en el sitio.
+Historial: reemplazó a una versión de 13 etapas (`Blog PPMM.pptx`), que a su vez reemplazó a la versión inicial de plan de difusión (`PLAN DIFUSION PPMM 2026 VF.pptx`).
+
+### Diseño del proceso como "ruta"
+
+Las 8 etapas se muestran como una línea/ruta vertical con nodos numerados. Un sello de contacto por etapa indica qué equipo te contacta: **Eficiencia Profesional** (ocre, etapas 1–3) y **Gold Fields** (navy, etapas 4–8), con un marcador de relevo entre la etapa 3 y la 4. Cada etapa es un `<details>` nativo que abre su detalle (qué significa, qué esperar, tips).
+
+### Recursos → toolkit de Eficiencia Profesional
+
+Los botones "Explorar recursos" y "Prepararme mejor" enlazan al toolkit externo:
+`https://t-sml.mtrbio.com/public/smartlink/eficienciaprofesionalredes` (se abre en pestaña nueva).
 
 ## Paleta de marca
 
@@ -29,7 +38,7 @@ Las 4 fotos reales (`assets/source/`) convertidas a WebP en `assets/img/`. Ningu
 |---|---|
 | `hero-mirador.webp` | Hero |
 | `retrato-planta.webp` | Sección "Protagonistas Mineras" |
-| `comunidad-dos.webp` | Banner dentro de "Etapas" |
+| `comunidad-dos.webp` | Banner "protagonistas en campo" dentro de "La ruta" |
 | `comunidad-frame.webp` | Sin usar actualmente (disponible para reincorporar) |
 
 ## Estructura

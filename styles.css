@@ -6,9 +6,18 @@
   --navy-2:    #0a2c4d;
   --navy-3:    #123a60;
   --teal:      #1bb398;
-  --teal-2:    #159c85;
+  --teal-2:    #128a74;
   --gold:      #c8a064;
   --gold-2:    #b78d4f;
+
+  /* Team accents — who contacts you at each stage */
+  --ep:        #a9782f;   /* Eficiencia Profesional — deep amber */
+  --ep-2:      #8f6626;
+  --ep-soft:   rgba(169, 120, 47, .12);
+  --ep-line:   rgba(169, 120, 47, .55);
+  --gf:        #001d39;   /* Gold Fields — navy */
+  --gf-soft:   rgba(0, 29, 57, .08);
+  --gf-line:   rgba(0, 29, 57, .32);
 
   --bg:        #eeeef0;
   --bg-2:      #f6f6f7;
@@ -120,15 +129,22 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
   border-radius: 2px;
 }
 
-.section-head { max-width: 44rem; margin-bottom: 2.5rem; }
+.section-head { max-width: 46rem; margin-bottom: 2.5rem; }
 .section-head h2 {
   font-size: clamp(1.7rem, 3.8vw, 2.5rem);
   margin-top: .7rem;
 }
 .section-head h2 em { color: var(--teal); font-style: normal; }
-.section-head p { margin-top: 1rem; color: var(--ink-mute); font-size: 1.04rem; max-width: 40rem; }
+.section-head p { margin-top: 1rem; color: var(--ink-mute); font-size: 1.04rem; max-width: 42rem; }
 
-.hairline { border: 0; border-top: 1px solid var(--line); margin: 0; }
+.lede {
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--navy);
+  max-width: 44rem;
+  font-weight: 400;
+}
+.lede em { color: var(--teal-2); font-style: normal; font-weight: 600; }
 
 .js .reveal {
   opacity: 0;
@@ -139,7 +155,7 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 .reveal[data-split] { opacity: 1; transform: none; }
 
 /* =============================================================
-   4. Buttons & chips
+   4. Buttons
    ============================================================= */
 .btn {
   display: inline-flex;
@@ -169,25 +185,8 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
   color: var(--navy);
 }
 .btn-ghost-dark:hover { border-color: var(--teal); color: var(--teal-2); background: rgba(27, 179, 152, .06); transform: translateY(-2px); }
-.btn-disabled {
-  border: 1.5px dashed var(--line-2);
-  color: var(--ink-mute);
-  cursor: default;
-}
 
 .hero-actions, .cta-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
-
-.chip {
-  display: inline-flex;
-  align-items: center;
-  padding: .55rem 1rem;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--navy-3);
-}
 
 /* =============================================================
    5. Nav
@@ -216,13 +215,12 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 .nav-brand { display: flex; flex-direction: column; line-height: 1.1; }
 .nav-brand .brand-org {
   font-size: .66rem; font-weight: 800; letter-spacing: .16em;
-  color: var(--nav-org-color, var(--teal));
+  color: var(--gold);
   text-transform: uppercase;
-  transition: color .35s var(--ease-out);
 }
 .nav-brand .brand-program {
   font-weight: 700; font-size: 1.02rem;
-  color: var(--nav-program-color, #fff);
+  color: #fff;
   transition: color .35s var(--ease-out);
 }
 .nav.is-scrolled .nav-brand .brand-program { color: var(--navy); }
@@ -235,7 +233,7 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 }
 .nav-links a {
   font-size: .88rem; font-weight: 600;
-  color: var(--nav-link-color, #fff);
+  color: #fff;
   position: relative; padding-block: .3rem;
   transition: color .35s var(--ease-out);
 }
@@ -245,7 +243,7 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
   height: 2px; background: var(--gold);
   transition: right .35s var(--ease-out);
 }
-.nav-links a:hover { color: var(--nav-link-hover, #fff); }
+.nav-links a:hover { color: #fff; }
 .nav.is-scrolled .nav-links a:hover { color: var(--navy); }
 .nav-links a:hover::after { right: 0; }
 .nav-cta { display: none; }
@@ -302,9 +300,6 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
   display: flex;
   align-items: flex-end;
   overflow: clip;
-  --nav-org-color: var(--gold);
-  --nav-program-color: #fff;
-  --nav-link-color: #fff;
 }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
 .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
@@ -343,91 +338,175 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 }
 .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(200, 160, 100, .22); }
 .hero-title {
-  font-size: clamp(2.2rem, 6.6vw, 4rem);
-  line-height: 1.06;
+  font-size: clamp(2.4rem, 7.4vw, 4.4rem);
+  line-height: 1.04;
   max-width: 15ch;
   color: #fff;
 }
 .hero-title em { font-style: normal; color: var(--gold); }
+.hero-kicker-line {
+  margin-top: 1rem;
+  font-size: clamp(1.1rem, 2.1vw, 1.35rem);
+  font-weight: 600;
+  color: #fff;
+}
 .hero-sub {
-  margin-top: 1.3rem;
-  font-size: clamp(1rem, 1.6vw, 1.18rem);
-  color: rgba(255, 255, 255, .86);
-  max-width: 50ch;
-  line-height: 1.65;
+  margin-top: .9rem;
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  color: rgba(255, 255, 255, .84);
+  max-width: 52ch;
+  line-height: 1.6;
 }
 .hero-list {
   margin-top: 1.5rem;
   display: flex; flex-wrap: wrap; gap: .6rem;
 }
-.hero-list span {
+.hero-list li {
   font-size: .84rem; font-weight: 600; color: #fff;
-  padding: .5rem .9rem;
+  padding: .5rem .9rem .5rem .85rem;
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: 999px;
   background: rgba(255, 255, 255, .06);
+  display: inline-flex; align-items: center; gap: .5em;
+}
+.hero-list li::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal); flex: none;
 }
 .hero-foot { margin-top: 2.2rem; }
 
 /* =============================================================
-   7. Intro / protagonistas blurb
+   7. Intro / programa
    ============================================================= */
-.intro-grid {
-  display: grid;
-  gap: 2rem;
-  align-items: center;
-}
+.intro-grid { display: grid; gap: 2rem; align-items: center; }
 @media (min-width: 860px) { .intro-grid { grid-template-columns: 1.1fr .9fr; gap: 3rem; } }
+.intro-copy h2 { font-size: clamp(1.7rem, 3.8vw, 2.5rem); margin-top: .7rem; }
+.intro-copy h2 em { color: var(--teal); font-style: normal; }
 .intro-copy p { font-size: 1.05rem; color: var(--ink-soft); max-width: 42rem; }
 .intro-copy p + p { margin-top: 1rem; }
 .intro-figure {
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--line);
+  border-radius: 18px; overflow: hidden;
+  box-shadow: var(--shadow); border: 1px solid var(--line);
 }
 .intro-figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
 
-.reassure-box {
-  margin-top: 2.5rem;
-  padding: 1.6rem 1.8rem;
-  background: var(--bg-2);
-  border-left: 3px solid var(--gold);
-  border-radius: 10px;
-}
-.reassure-box p { color: var(--ink-soft); font-size: .98rem; line-height: 1.6; }
-.reassure-box p + p { margin-top: .5rem; }
-
 /* =============================================================
-   8. Proceso overview — mapa rápido
+   8. Partner card (Eficiencia Profesional)
    ============================================================= */
-.step-map {
+.partner-card {
   margin-top: 2.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .6rem;
-}
-.step-map a {
-  display: inline-flex; align-items: center; gap: .5em;
-  font-size: .84rem; font-weight: 700;
-  color: var(--navy-3);
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
   background: var(--paper);
   border: 1px solid var(--line);
-  padding: .6rem 1rem;
-  border-radius: 999px;
-  transition: border-color .3s var(--ease-out), background .3s var(--ease-out), color .3s var(--ease-out);
+  border-radius: 18px;
+  overflow: clip;
+  box-shadow: var(--shadow-sm);
 }
-.step-map a .num { color: var(--teal-2); font-weight: 800; }
-.step-map a:hover { border-color: var(--teal); background: rgba(27, 179, 152, .07); color: var(--teal-2); }
+@media (min-width: 820px) { .partner-card { grid-template-columns: 1.4fr 1fr; } }
+.partner-body { padding: 1.9rem 2rem; border-left: 4px solid var(--ep); }
+.partner-tag {
+  display: inline-block;
+  font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  padding: .35rem .8rem; border-radius: 999px;
+  background: var(--ep-soft); color: var(--ep-2);
+  margin-bottom: .9rem;
+}
+.partner-body h3 { font-size: 1.5rem; color: var(--navy); }
+.partner-body p { margin-top: .7rem; color: var(--ink-soft); font-size: 1rem; line-height: 1.6; }
+.partner-body strong { color: var(--ep-2); font-weight: 700; }
+.partner-stages {
+  padding: 1.9rem 2rem;
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 820px) { .partner-stages { border-top: 0; border-left: 1px solid var(--line); } }
+.partner-stages-label {
+  display: block;
+  font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 1rem;
+}
+.partner-stages ol { display: grid; gap: .8rem; }
+.partner-stages li {
+  display: flex; align-items: center; gap: .8rem;
+  font-size: .96rem; font-weight: 600; color: var(--navy);
+}
+.mini-node {
+  flex: none; width: 1.7rem; height: 1.7rem; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: .8rem; font-weight: 800; color: #fff;
+}
+.team-node-ep { background: var(--ep); }
+.team-node-gf { background: var(--gf); }
 
 /* =============================================================
-   9. Stage accordion (native <details>)
+   9. La ruta — vertical timeline
    ============================================================= */
-.stages { margin-top: 2.75rem; display: grid; gap: 1rem; }
+.route-legend {
+  display: flex; flex-wrap: wrap; gap: 1.2rem;
+  margin-top: .5rem; margin-bottom: 2rem;
+}
+.legend-item {
+  display: inline-flex; align-items: center; gap: .55em;
+  font-size: .82rem; font-weight: 700; color: var(--navy);
+}
+.legend-dot { width: .95rem; height: .95rem; border-radius: 50%; display: inline-block; }
+
+.route { position: relative; }
+.route-stage {
+  position: relative;
+  padding-left: 3.9rem;
+  padding-bottom: 1rem;
+}
+/* connecting line — each stage draws its own segment, colored by team */
+.route-stage::before {
+  content: ""; position: absolute; left: 1.35rem; top: 0; bottom: 0;
+  width: 2px; transform: translateX(-50%);
+  background: var(--seg, var(--gf-line));
+}
+.route-stage.team-ep { --seg: var(--ep-line); }
+.route-stage.team-gf { --seg: var(--gf-line); }
+#stage-1::before { top: 3.7rem; }
+.route-stage-final::before { bottom: calc(100% - 3.7rem); }
+
+.stage-node {
+  position: absolute; left: 1.35rem; top: 3.7rem;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 2.7rem; height: 2.7rem; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.02rem; font-weight: 800; color: #fff;
+  box-shadow: 0 0 0 5px var(--bg);
+}
+.stage-node-final svg { width: 1.3rem; height: 1.3rem; }
+
+/* Handoff marker between Eficiencia (1-3) and Gold Fields (4-8) */
+.route-handoff {
+  position: relative;
+  padding-left: 3.9rem;
+  padding-block: .5rem;
+  min-height: 2.6rem;
+  display: flex; align-items: center;
+}
+.route-handoff::before {
+  content: ""; position: absolute; left: 1.35rem; top: 0; bottom: 0;
+  width: 2px; transform: translateX(-50%);
+  background: linear-gradient(180deg, var(--ep-line), var(--gf-line));
+}
+.handoff-label {
+  font-size: .78rem; font-weight: 700; font-style: italic;
+  color: var(--navy-3);
+  background: var(--bg-2);
+  border: 1px dashed var(--line-2);
+  border-radius: 999px;
+  padding: .45rem 1rem;
+}
+
 .stage {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: clip;
   scroll-margin-top: calc(var(--nav-h) + 16px);
   transition: border-color .3s var(--ease-out), box-shadow .3s var(--ease-out);
@@ -436,60 +515,45 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 .stage-summary {
   list-style: none;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  padding: 1.3rem 1.5rem;
-  font-weight: 700;
-  color: var(--navy);
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.15rem 1.4rem;
 }
 .stage-summary::-webkit-details-marker { display: none; }
-.stage-num {
-  flex: none;
-  width: 2.6rem; height: 2.6rem;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: var(--bg-2);
-  color: var(--teal-2);
-  font-weight: 800;
-  font-size: .95rem;
-  border: 1px solid var(--line);
+.stage-head { flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+.stage-team {
+  font-size: .68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  display: inline-flex; align-items: center;
+  align-self: flex-start;
+  padding: .2rem .6rem; border-radius: 999px;
 }
-.stage[open] .stage-num { background: var(--teal); color: #fff; border-color: var(--teal); }
-.stage-summary-title { flex: 1; font-size: 1.06rem; }
-.stage-chevron {
-  flex: none;
-  width: 20px; height: 20px;
-  color: var(--ink-mute);
-  transition: transform .3s var(--ease-out);
-}
+.stage-team.team-ep { background: var(--ep-soft); color: var(--ep-2); }
+.stage-team.team-gf { background: var(--gf-soft); color: var(--navy); }
+.stage-name { font-size: 1.08rem; font-weight: 700; color: var(--navy); line-height: 1.25; }
+.stage-chevron { flex: none; width: 20px; height: 20px; color: var(--ink-mute); transition: transform .3s var(--ease-out); }
 .stage[open] .stage-chevron { transform: rotate(180deg); color: var(--teal); }
 
 .stage-body {
-  padding: 0 1.5rem 1.7rem;
-  display: grid;
-  gap: 1.4rem;
+  padding: 0 1.4rem 1.5rem;
+  display: grid; gap: 1.3rem;
 }
-@media (min-width: 720px) { .stage-body { grid-template-columns: 1fr 1fr; gap: 1.8rem; } }
+@media (min-width: 640px) { .stage-body { grid-template-columns: 1fr 1fr; gap: 1.6rem; } }
 .stage-block h4 {
-  font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--teal-2); margin-bottom: .5rem;
+  font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--teal-2); margin-bottom: .4rem;
 }
-.stage-block p { color: var(--ink-soft); font-size: .98rem; line-height: 1.6; }
+.stage-block p { color: var(--ink-soft); font-size: .97rem; line-height: 1.55; }
 .stage-tips {
   grid-column: 1 / -1;
-  background: var(--bg-2);
-  border-radius: 12px;
-  padding: 1.3rem 1.5rem;
+  background: var(--bg-2); border-radius: 12px; padding: 1.2rem 1.4rem;
 }
 .stage-tips h4 {
-  font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--gold-2); margin-bottom: .7rem;
+  font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--gold-2); margin-bottom: .6rem;
 }
-.stage-tips ul { display: grid; gap: .5rem; }
+.stage-tips ul { display: grid; gap: .45rem; }
 .stage-tips li {
   position: relative; padding-left: 1.3rem;
-  font-size: .95rem; color: var(--ink-soft); line-height: 1.55;
+  font-size: .95rem; color: var(--ink-soft); line-height: 1.5;
 }
 .stage-tips li::before {
   content: ""; position: absolute; left: 0; top: .55em;
@@ -498,71 +562,76 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 .stage-note {
   grid-column: 1 / -1;
   font-size: .95rem; font-style: italic; color: var(--navy-3);
-  border-top: 1px solid var(--line);
-  padding-top: 1.1rem;
+  border-top: 1px solid var(--line); padding-top: 1rem;
 }
 
 /* =============================================================
-   10. Banner (breather image)
+   10. Banner (field photo breather)
    ============================================================= */
 .banner {
   position: relative;
   margin-top: 3.5rem;
   border-radius: 20px;
   overflow: clip;
-  min-height: 320px;
-  display: flex;
-  align-items: flex-end;
+  min-height: 300px;
+  display: flex; align-items: flex-end;
 }
 .banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .banner-tint {
   position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(0, 29, 57, .88) 0%, rgba(0, 29, 57, .1) 60%);
+  background: linear-gradient(0deg, rgba(0, 29, 57, .9) 0%, rgba(0, 29, 57, .12) 62%);
 }
 .banner-caption {
   position: relative; z-index: 1;
-  padding: 1.6rem 1.8rem;
-  color: #fff;
-  font-size: .95rem;
-  max-width: 34rem;
+  padding: 1.6rem 1.8rem; color: #fff; font-size: .95rem; max-width: 36rem;
 }
 .banner-caption strong { display: block; font-size: 1.15rem; margin-bottom: .3rem; }
 
 /* =============================================================
-   11. Recursos
+   11. Recursos (Eficiencia toolkit)
    ============================================================= */
-.resource-grid {
+.resource-panel {
   margin-top: 2.5rem;
-  display: grid; gap: 1.1rem;
+  display: grid; gap: 0;
   grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .resource-grid { grid-template-columns: repeat(2, 1fr); } }
-.resource-card {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 1.7rem 1.8rem;
-  transition: transform .35s var(--ease-out), border-color .35s var(--ease-out);
+  border-radius: 18px;
+  overflow: clip;
+  box-shadow: var(--shadow-sm);
 }
-.resource-card:hover { transform: translateY(-3px); border-color: var(--teal); }
-.resource-card .resource-tag {
-  display: inline-block;
-  font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--teal-2);
-  margin-bottom: .6rem;
+@media (min-width: 820px) { .resource-panel { grid-template-columns: 1.3fr 1fr; } }
+.resource-topics { padding: 1.9rem 2rem; }
+.resource-topics-label {
+  display: block;
+  font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 1.1rem;
 }
-.resource-card p.resource-lede { color: var(--ink-mute); font-size: .92rem; margin-bottom: .9rem; }
-.resource-card ul { display: grid; gap: .6rem; }
-.resource-card li {
-  position: relative; padding-left: 1.2rem;
-  font-size: .98rem; font-weight: 600; color: var(--navy-3); line-height: 1.5;
+.resource-topics ul {
+  display: grid; gap: .7rem;
+  grid-template-columns: 1fr;
 }
-.resource-card li::before {
-  content: "→"; position: absolute; left: 0; color: var(--gold-2); font-weight: 700;
+@media (min-width: 480px) { .resource-topics ul { grid-template-columns: 1fr 1fr; } }
+.resource-topics li {
+  position: relative; padding-left: 1.5rem;
+  font-size: 1rem; font-weight: 600; color: var(--navy); line-height: 1.4;
 }
+.resource-topics li::before {
+  content: ""; position: absolute; left: 0; top: .5em;
+  width: .7rem; height: .7rem; border-radius: 3px;
+  background: var(--teal);
+}
+.resource-cta {
+  padding: 1.9rem 2rem;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: #fff;
+  display: flex; flex-direction: column; justify-content: center; gap: 1.1rem;
+}
+.resource-cta p { color: rgba(255,255,255,.85); font-size: .98rem; }
+.resource-cta .btn-primary { align-self: flex-start; }
 
 /* =============================================================
-   12. FAQs (native <details>)
+   12. FAQs
    ============================================================= */
 .faqs { margin-top: 2.5rem; display: grid; gap: .8rem; }
 .faq {
@@ -576,8 +645,7 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
   cursor: pointer;
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding-block: 1.2rem;
-  font-weight: 700; color: var(--navy);
-  font-size: 1rem;
+  font-weight: 700; color: var(--navy); font-size: 1rem;
 }
 .faq-summary::-webkit-details-marker { display: none; }
 .faq-chevron { flex: none; width: 18px; height: 18px; color: var(--teal); transition: transform .3s var(--ease-out); }
@@ -589,15 +657,14 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
    ============================================================= */
 .final-cta {
   background: linear-gradient(120deg, var(--navy) 0%, var(--navy-2) 55%, #0d3a5c 100%);
-  text-align: center;
-  color: #fff;
+  text-align: center; color: #fff;
 }
 .final-cta .kicker { color: var(--gold); justify-content: center; }
 .final-cta .kicker::before { background: var(--gold); }
 .final-cta .section-head { margin-inline: auto; text-align: center; }
 .final-cta h2 { color: #fff; }
 .final-cta h2 em { color: var(--teal); font-style: normal; }
-.final-cta .section-head p { color: rgba(255,255,255,.78); margin-inline: auto; }
+.final-cta .section-head p { color: rgba(255,255,255,.8); margin-inline: auto; }
 .final-cta .cta-actions { justify-content: center; margin-top: 2.2rem; }
 
 /* =============================================================
@@ -608,7 +675,7 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em;
 @media (min-width: 720px) { .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
 .footer-brand .brand-org { font-size: .7rem; font-weight: 800; letter-spacing: .16em; color: var(--teal-2); text-transform: uppercase; }
 .footer-brand .brand-program { font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-top: .2rem; }
-.footer-meta { font-size: .84rem; color: var(--ink-mute); line-height: 1.6; }
+.footer-meta { font-size: .84rem; color: var(--ink-mute); line-height: 1.6; max-width: 30rem; }
 
 /* =============================================================
    15. Reduced motion
